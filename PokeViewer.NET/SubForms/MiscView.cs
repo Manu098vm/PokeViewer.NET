@@ -214,6 +214,7 @@ namespace PokeViewer.NET.SubForms
                 var totalblock = Blocks.KMassOutbreak01TotalSpawns;
                 var formblock = Blocks.KMassOutbreak01Form;
                 var pos = Blocks.KMassOutbreak01CenterPos;
+                var dummypos = Blocks.KOutbreak01MainDummyPos;
 
                 if (comboBox1.SelectedIndex is 0 or 1)
                 {
@@ -238,13 +239,13 @@ namespace PokeViewer.NET.SubForms
                         switch (i)
                         {
                             case 0: break;
-                            case 1: block = Blocks.KOutbreakSpecies2; formblock = Blocks.KMassOutbreak02Form; koblock = Blocks.KMassOutbreakKO2; totalblock = Blocks.KMassOutbreak02TotalSpawns; pos = Blocks.KMassOutbreak02CenterPos; break;
-                            case 2: block = Blocks.KOutbreakSpecies3; formblock = Blocks.KMassOutbreak03Form; koblock = Blocks.KMassOutbreakKO3; totalblock = Blocks.KMassOutbreak03TotalSpawns; pos = Blocks.KMassOutbreak03CenterPos; break;
-                            case 3: block = Blocks.KOutbreakSpecies4; formblock = Blocks.KMassOutbreak04Form; koblock = Blocks.KMassOutbreakKO4; totalblock = Blocks.KMassOutbreak04TotalSpawns; pos = Blocks.KMassOutbreak04CenterPos; break;
-                            case 4: block = Blocks.KOutbreakSpecies5; formblock = Blocks.KMassOutbreak05Form; koblock = Blocks.KMassOutbreakKO5; totalblock = Blocks.KMassOutbreak05TotalSpawns; pos = Blocks.KMassOutbreak05CenterPos; break;
-                            case 5: block = Blocks.KOutbreakSpecies6; formblock = Blocks.KMassOutbreak06Form; koblock = Blocks.KMassOutbreakKO6; totalblock = Blocks.KMassOutbreak06TotalSpawns; pos = Blocks.KMassOutbreak06CenterPos; break;
-                            case 6: block = Blocks.KOutbreakSpecies7; formblock = Blocks.KMassOutbreak07Form; koblock = Blocks.KMassOutbreakKO7; totalblock = Blocks.KMassOutbreak07TotalSpawns; pos = Blocks.KMassOutbreak07CenterPos; break;
-                            case 7: block = Blocks.KOutbreakSpecies8; formblock = Blocks.KMassOutbreak08Form; koblock = Blocks.KMassOutbreakKO8; totalblock = Blocks.KMassOutbreak08TotalSpawns; pos = Blocks.KMassOutbreak08CenterPos; break;
+                            case 1: block = Blocks.KOutbreakSpecies2; formblock = Blocks.KMassOutbreak02Form; koblock = Blocks.KMassOutbreakKO2; totalblock = Blocks.KMassOutbreak02TotalSpawns; pos = Blocks.KMassOutbreak02CenterPos; dummypos = Blocks.KOutbreak02MainDummyPos; break;
+                            case 2: block = Blocks.KOutbreakSpecies3; formblock = Blocks.KMassOutbreak03Form; koblock = Blocks.KMassOutbreakKO3; totalblock = Blocks.KMassOutbreak03TotalSpawns; pos = Blocks.KMassOutbreak03CenterPos; dummypos = Blocks.KOutbreak03MainDummyPos; break;
+                            case 3: block = Blocks.KOutbreakSpecies4; formblock = Blocks.KMassOutbreak04Form; koblock = Blocks.KMassOutbreakKO4; totalblock = Blocks.KMassOutbreak04TotalSpawns; pos = Blocks.KMassOutbreak04CenterPos; dummypos = Blocks.KOutbreak04MainDummyPos; break;
+                            case 4: block = Blocks.KOutbreakSpecies5; formblock = Blocks.KMassOutbreak05Form; koblock = Blocks.KMassOutbreakKO5; totalblock = Blocks.KMassOutbreak05TotalSpawns; pos = Blocks.KMassOutbreak05CenterPos; dummypos = Blocks.KOutbreak05MainDummyPos; break;
+                            case 5: block = Blocks.KOutbreakSpecies6; formblock = Blocks.KMassOutbreak06Form; koblock = Blocks.KMassOutbreakKO6; totalblock = Blocks.KMassOutbreak06TotalSpawns; pos = Blocks.KMassOutbreak06CenterPos; dummypos = Blocks.KOutbreak06MainDummyPos; break;
+                            case 6: block = Blocks.KOutbreakSpecies7; formblock = Blocks.KMassOutbreak07Form; koblock = Blocks.KMassOutbreakKO7; totalblock = Blocks.KMassOutbreak07TotalSpawns; pos = Blocks.KMassOutbreak07CenterPos; dummypos = Blocks.KOutbreak07MainDummyPos; break;
+                            case 7: block = Blocks.KOutbreakSpecies8; formblock = Blocks.KMassOutbreak08Form; koblock = Blocks.KMassOutbreakKO8; totalblock = Blocks.KMassOutbreak08TotalSpawns; pos = Blocks.KMassOutbreak08CenterPos; dummypos = Blocks.KOutbreak08MainDummyPos; break;
                         }
                         if (i > OutbreaktotalP - 1)
                             continue;
@@ -259,6 +260,8 @@ namespace PokeViewer.NET.SubForms
                         OutbreakCache[i].SpeciesFormLoaded = fofs;
                         var (obpos, bofs) = await ReadEncryptedBlockArray(pos, OutbreakCache[i].SpeciesCenterPOSLoaded, token).ConfigureAwait(false);
                         OutbreakCache[i].SpeciesCenterPOSLoaded = bofs;
+                        var (obdummypos, dofs) = await ReadEncryptedBlockArray(dummypos, OutbreakCache[i].SpeciesDummyPOSLoaded, token).ConfigureAwait(false);
+                        OutbreakCache[i].SpeciesDummyPOSLoaded = dofs;
 
                         PK9 pk = new()
                         {
@@ -275,6 +278,45 @@ namespace PokeViewer.NET.SubForms
                         POSlistP.Add(obpos);
                         kolistP.Add(kocount);
                         totallistP.Add(totalcount);
+
+                        if (((Species)pk.Species is Species.Muk or Species.Pelipper or Species.Cacturne or Species.Hippowdon or Species.Finneon
+                            or Species.Lumineon or Species.Petilil or Species.Petilil or Species.Krokorok or Species.Braviary or Species.Volcarona
+                            or Species.Talonflame or Species.Spewpa or Species.Toxapex or Species.Fomantis or Species.Palossand or Species.Sandaconda
+                            or Species.Hattrem or Species.Dolliv or Species.Gastrodon) || ((Species)pk.Species is Species.Sawsbuck && pk.Form is 0 or 1)
+                            || ((Species)pk.Species is Species.Oricorio && pk.Form is 1 or 2 or 3))
+                        {
+                            if (obpos is not null && obdummypos is not null && species != 0)
+                            {
+                                var nationalspecies = SpeciesConverter.GetNational9((ushort)species);
+                                var json = "{\n" +
+                                    "\t\"LocationCenter\": \"" + BitConverter.ToString(obpos).Replace("-", string.Empty) + "\",\n" +
+                                    "\t\"LocationDummy\": \"" + BitConverter.ToString(obdummypos).Replace("-", string.Empty) + "\",\n" +
+                                    "\t\"Species\": " + nationalspecies + ",\n" +
+                                    "\t\"Form\": " + form + ",\n" +
+                                    "\t\"MaxSpawns\": " + totalcount + "\n" +
+                                "}";
+
+                                var formlist = FormConverter.GetFormList(nationalspecies, GameInfo.GetStrings("en").types, GameInfo.GetStrings("en").forms, GameInfo.GenderSymbolUnicode, EntityContext.Gen9);
+
+                                var hasForm = false;
+                                if (!(formlist.Length == 0 || (formlist.Length == 1 && formlist[0].Equals(""))))
+                                    hasForm = true;
+
+                                if (hasForm)
+                                {
+                                    var filename = "C:\\Users\\wiima\\OneDrive\\Desktop\\Pokémon\\outbreaks\\paldea";
+                                    File.WriteAllText(Path.Combine(filename, $"{nationalspecies}-{form}.json"), json);
+                                    if (form == 0)
+                                        File.WriteAllText(Path.Combine(filename, $"{nationalspecies}.json"), json);
+                                }
+                                else
+                                {
+                                    var filename = "C:\\Users\\wiima\\OneDrive\\Desktop\\Pokémon\\outbreaks\\paldea";
+                                    File.WriteAllText(Path.Combine(filename, $"{nationalspecies}.json"), json);
+                                }
+                            }
+                        }
+
                     }
                 }
 
@@ -301,10 +343,10 @@ namespace PokeViewer.NET.SubForms
                         UpdateProgress(8 * i, 100);
                         switch (i)
                         {
-                            case 8: block = Blocks.KOutbreakSpecies9; formblock = Blocks.KMassOutbreak09Form; koblock = Blocks.KMassOutbreakKO9; totalblock = Blocks.KMassOutbreak09TotalSpawns; pos = Blocks.KMassOutbreak09CenterPos; break;
-                            case 9: block = Blocks.KOutbreakSpecies10; formblock = Blocks.KMassOutbreak10Form; koblock = Blocks.KMassOutbreakKO10; totalblock = Blocks.KMassOutbreak10TotalSpawns; pos = Blocks.KMassOutbreak10CenterPos; break;
-                            case 10: block = Blocks.KOutbreakSpecies11; formblock = Blocks.KMassOutbreak11Form; koblock = Blocks.KMassOutbreakKO11; totalblock = Blocks.KMassOutbreak11TotalSpawns; pos = Blocks.KMassOutbreak11CenterPos; break;
-                            case 11: block = Blocks.KOutbreakSpecies12; formblock = Blocks.KMassOutbreak12Form; koblock = Blocks.KMassOutbreakKO12; totalblock = Blocks.KMassOutbreak12TotalSpawns; pos = Blocks.KMassOutbreak12CenterPos; break;
+                            case 8: block = Blocks.KOutbreakSpecies9; formblock = Blocks.KMassOutbreak09Form; koblock = Blocks.KMassOutbreakKO9; totalblock = Blocks.KMassOutbreak09TotalSpawns; pos = Blocks.KMassOutbreak09CenterPos; dummypos = Blocks.KOutbreak01DLC1DummyPos; break;
+                            case 9: block = Blocks.KOutbreakSpecies10; formblock = Blocks.KMassOutbreak10Form; koblock = Blocks.KMassOutbreakKO10; totalblock = Blocks.KMassOutbreak10TotalSpawns; pos = Blocks.KMassOutbreak10CenterPos; dummypos = Blocks.KOutbreak01DLC1DummyPos; break;
+                            case 10: block = Blocks.KOutbreakSpecies11; formblock = Blocks.KMassOutbreak11Form; koblock = Blocks.KMassOutbreakKO11; totalblock = Blocks.KMassOutbreak11TotalSpawns; pos = Blocks.KMassOutbreak11CenterPos; dummypos = Blocks.KOutbreak01DLC1DummyPos; break;
+                            case 11: block = Blocks.KOutbreakSpecies12; formblock = Blocks.KMassOutbreak12Form; koblock = Blocks.KMassOutbreakKO12; totalblock = Blocks.KMassOutbreak12TotalSpawns; pos = Blocks.KMassOutbreak12CenterPos; dummypos = Blocks.KOutbreak01DLC1DummyPos; break;
                         }
                         if (i > OutbreaktotalK + 8 - 1)
                             continue;
@@ -319,6 +361,8 @@ namespace PokeViewer.NET.SubForms
                         OutbreakCache[i].SpeciesFormLoaded = fofs;
                         var (obpos, bofs) = await ReadEncryptedBlockArray(pos, OutbreakCache[i].SpeciesCenterPOSLoaded, token).ConfigureAwait(false);
                         OutbreakCache[i].SpeciesCenterPOSLoaded = bofs;
+                        var (obdummypos, dofs) = await ReadEncryptedBlockArray(dummypos, OutbreakCache[i].SpeciesDummyPOSLoaded, token).ConfigureAwait(false);
+                        OutbreakCache[i].SpeciesDummyPOSLoaded = dofs;
 
                         PK9 pk = new()
                         {
@@ -335,6 +379,42 @@ namespace PokeViewer.NET.SubForms
                         POSlistK.Add(obpos);
                         kolistK.Add(kocount);
                         totallistK.Add(totalcount);
+
+                        if (((Species)pk.Species is Species.Aipom or Species.Morpeko or Species.Bronzong or Species.Hakamoo or Species.Flapple or Species.Appletun)
+                            || ((Species)pk.Species is Species.Rockruff && pk.Form is 1) || ((Species)pk.Species is Species.Lycanroc && pk.Form is 0 or 2))
+                        {
+                            if (obpos is not null && obdummypos is not null && species != 0)
+                            {
+                                var nationalspecies = SpeciesConverter.GetNational9((ushort)species);
+                                var json = "{\n" +
+                                    "\t\"LocationCenter\": \"" + BitConverter.ToString(obpos).Replace("-", string.Empty) + "\",\n" +
+                                    "\t\"LocationDummy\": \"" + BitConverter.ToString(obdummypos).Replace("-", string.Empty) + "\",\n" +
+                                    "\t\"Species\": " + nationalspecies + ",\n" +
+                                    "\t\"Form\": " + form + ",\n" +
+                                    "\t\"MaxSpawns\": " + totalcount + "\n" +
+                                "}";
+
+                                var formlist = FormConverter.GetFormList(nationalspecies, GameInfo.GetStrings("en").types, GameInfo.GetStrings("en").forms, GameInfo.GenderSymbolUnicode, EntityContext.Gen9);
+
+                                var hasForm = false;
+                                if (!(formlist.Length == 0 || (formlist.Length == 1 && formlist[0].Equals(""))))
+                                    hasForm = true;
+
+                                if (hasForm)
+                                {
+                                    var filename = "C:\\Users\\wiima\\OneDrive\\Desktop\\Pokémon\\outbreaks\\kitakami";
+                                    File.WriteAllText(Path.Combine(filename, $"{nationalspecies}-{form}.json"), json);
+                                    if (form == 0)
+                                        File.WriteAllText(Path.Combine(filename, $"{nationalspecies}.json"), json);
+                                }
+                                else
+                                {
+                                    var filename = "C:\\Users\\wiima\\OneDrive\\Desktop\\Pokémon\\outbreaks\\kitakami";
+                                    File.WriteAllText(Path.Combine(filename, $"{nationalspecies}.json"), json);
+                                }
+                            }
+                        }
+
                     }
                 }
 
@@ -878,6 +958,7 @@ namespace PokeViewer.NET.SubForms
             public ulong SpeciesTotalCountLoaded { get; set; } = 0;
             public ulong SpeciesKOCountLoaded { get; set; } = 0;
             public ulong SpeciesCenterPOSLoaded { get; set; } = 0;
+            public ulong SpeciesDummyPOSLoaded { get; set; } = 0;
         }
 
         public new async Task Click(SwitchButton b, int delay, CancellationToken token)

@@ -250,6 +250,14 @@ namespace PokeViewer.NET
             IsEncrypted = true,
             Size = 12,
         };
+        public static readonly DataBlock KOutbreak01MainDummyPos = new()
+        {
+            Name = "KOutbreak01MainDummyPos",
+            Key = 0x4A13BE7C,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         #endregion
         #region Outbreak2
         public static DataBlock KOutbreakSpecies2 = new()
@@ -290,8 +298,24 @@ namespace PokeViewer.NET
             IsEncrypted = true,
             Size = 12,
         };
+        public static readonly DataBlock KOutbreak02MainDummyPos = new()
+        {
+            Name = "KOutbreak02MainDummyPos",
+            Key = 0x4A118F71,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         #endregion
         #region Outbreak3
+        public static readonly DataBlock KOutbreak03MainDummyPos = new()
+        {
+            Name = "KOutbreak03MainDummyPos",
+            Key = 0x4A0E135A,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         public static DataBlock KOutbreakSpecies3 = new()
         {
             Name = "KOutbreakSpecies3",
@@ -332,6 +356,14 @@ namespace PokeViewer.NET
         };
         #endregion
         #region Outbreak4
+        public static readonly DataBlock KOutbreak04MainDummyPos = new()
+        {
+            Name = "KOutbreak04MainDummyPos",
+            Key = 0x4A0BD6B7,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         public static DataBlock KOutbreakSpecies4 = new()
         {
             Name = "KOutbreakSpecies4",
@@ -372,6 +404,14 @@ namespace PokeViewer.NET
         };
         #endregion
         #region Outbreak5
+        public static readonly DataBlock KOutbreak05MainDummyPos = new()
+        {
+            Name = "KOutbreak05MainDummyPos",
+            Key = 0x4A1FFBD8,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         public static DataBlock KOutbreakSpecies5 = new()
         {
             Name = "KOutbreakSpecies5",
@@ -412,6 +452,14 @@ namespace PokeViewer.NET
         };
         #endregion
         #region Outbreak6
+        public static readonly DataBlock KOutbreak06MainDummyPos = new()
+        {
+            Name = "KOutbreak06MainDummyPos",
+            Key = 0x4A1C868D,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         public static DataBlock KOutbreakSpecies6 = new()
         {
             Name = "KOutbreakSpecies6",
@@ -452,6 +500,14 @@ namespace PokeViewer.NET
         };
         #endregion
         #region Outbreak7
+        public static readonly DataBlock KOutbreak07MainDummyPos = new()
+        {
+            Name = "KOutbreak07MainDummyPos",
+            Key = 0x4A1A50B6,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         public static DataBlock KOutbreakSpecies7 = new()
         {
             Name = "KOutbreakSpecies7",
@@ -492,6 +548,14 @@ namespace PokeViewer.NET
         };
         #endregion
         #region Outbreak8
+        public static readonly DataBlock KOutbreak08MainDummyPos = new()
+        {
+            Name = "KOutbreak08MainDummyPos",
+            Key = 0x4A166113,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         public static DataBlock KOutbreakSpecies8 = new()
         {
             Name = "KOutbreakSpecies8",
@@ -532,6 +596,14 @@ namespace PokeViewer.NET
         };
         #endregion
         #region Outbreak9
+        public static readonly DataBlock KOutbreak01DLC1DummyPos = new()
+        {
+            Name = "KOutbreak01DLC1DummyPos",
+            Key = 0x632EFBFE,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         public static DataBlock KOutbreakSpecies9 = new()
         {
             Name = "KOutbreakSpecies9",
@@ -572,6 +644,14 @@ namespace PokeViewer.NET
         };
         #endregion
         #region Outbreak10
+        public static readonly DataBlock KOutbreak02DLC1DummyPos = new()
+        {
+            Name = "KOutbreak02DLC1DummyPos",
+            Key = 0x632D2C1B,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         public static DataBlock KOutbreakSpecies10 = new()
         {
             Name = "KOutbreakSpecies10",
@@ -613,6 +693,14 @@ namespace PokeViewer.NET
         };
         #endregion
         #region Outbreak11
+        public static readonly DataBlock KOutbreak03DLC1DummyPos = new()
+        {
+            Name = "KOutbreak03DLC1DummyPos",
+            Key = 0x633580A0,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         public static DataBlock KOutbreakSpecies11 = new()
         {
             Name = "KOutbreakSpecies11",
@@ -653,6 +741,14 @@ namespace PokeViewer.NET
         };
         #endregion
         #region Outbreak12
+        public static readonly DataBlock KOutbreak04DLC1DummyPos = new()
+        {
+            Name = "KOutbreak04DLC1DummyPos",
+            Key = 0x6332E4D5,
+            Type = SCTypeCode.Array,
+            IsEncrypted = true,
+            Size = 12,
+        };
         public static DataBlock KOutbreakSpecies12 = new()
         {
             Name = "KOutbreakSpecies12",
